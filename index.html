@@ -2,32 +2,173 @@
 <html lang='en-US'>
 	<head>
 		<meta charset='utf-8'>
-		<title>Simple Page</title>
-		<meta name='description' content='A very simple webpage with the body flowing down the center.'/>
+		<title>Infinite Page Template</title>
+		<!--
+		Infinite Page Template
+		
+		A simple template with just a main element that flows vertically down the center of the viewport. There is no header, footer, navigation element or complementary content.
+		-->
+		<!--meta name='author' content='Author'/-->
+		<!--meta name='description' content=''/-->
+		<!--meta name='keywords' content='apple,orange,pear,pomegranate'/-->
 		<meta name='viewport' content='width=device-width'>
 		<!--link href='favicon.svg' rel='icon' type='image/svg'/-->
-		<link href='style.css' rel='stylesheet'/>
+		<style>
+			/* Modules */
+				/* Compositing and Blending */
+				
+				/* Animations */
+				
+				/* Backgrounds and Borders */
+				
+				/* Basic User Interface */
+				
+				/* Box Alignment */
+				
+				/* Box Model */
+				
+				/* Charsets */
+				
+				/* Colors */
+				
+				/* Multi-column Layout */
+				
+				/* Conditional Rules */
+				
+				/* Containment */
+				
+				/* Counter Styles */
+				
+				/* Display */
+				
+				/* Flexible Box Layout */
+				
+				/* Fonts */
+				
+				/* Fragmentation */
+				
+				/* Generated Content */
+				
+				/* Grid Layout */
+				
+				/* Images */
+				
+				/* Lists */
+				
+				/* Logical Properties and Values */
+				
+				/* Masking */
+				
+				/* Miscellaneous */
+				
+				/* Motion Path */
+				
+				/* Namespaces */
+				
+				/* Overflow */
+				
+				/* Paged Media */
+				
+				/* Positioned Layout */
+				
+				/* Ruby Layout */
+				
+				/* Scroll Snap */
+				
+				/* Scroll Snap Points */
+				
+				/* Scrollbars */
+				
+				/* Shapes */
+				
+				/* Table */
+				
+				/* Text */
+				
+				/* Text Decoration */
+				
+				/* Transforms */
+				
+				/* Transitions */
+				
+				/* Custom Properties for Cascading Variables */
+				
+				/* Writing Modes */
+				
+				/* CSSOM View */
+				
+				/* Filter Effects */
+				
+			html {
+				/* Text. */
+				font-family: sans-serif; /* A user-provided sans-serif. */
+			}
+			body {
+				/* Background and borders. */
+				background-image: url(coastline.svg); /* A nice background image. Replace this with another image if you wish. */
+				background-size: cover; /* Scale the image to fill the entire document, leaving no empty space, whilst maintaining the aspect ratio. */
+				background-position: center; /* Center the background in both the x and y dimensions. The y-dimension is centered so that the horizon in the image is always in the center of the viewport. */
+				background-attachment: fixed;
+				/* Box model. */
+				margin: 10px; /* A small amount of margin on the left and right. Noticeable when the viewport is narrower than the maximum main element width. */
+			}
+			main {
+				/* Box model. */
+				margin: 20px auto; /* Add some margin on the top and bottom and space the left and right margins equally as the main element changes size to center it. */
+				padding: 20px;
+				/* Background and borders. */
+				background: hsl(0, 0%, 100%, 70%); /* An almost opaque white background that allows a little bit of the background image to be seen. */
+				/** Some corner rounding. */
+				--border-radius: 10px;
+				border-radius: var(--border-radius); 
+				webkit-border-radius: var(--border-radius); 
+				/* Box sizing. */
+				max-width: 1000px; /* A maximum width that prevents the content (text in particular) getting too stretched out on wide viewports. */
+				/* Filter Effects */
+				/** Blur the body background to prevent shapes interfering with the main content. */
+				--backdrop-filter: 50px;
+				backdrop-filter: blur(var(--backdrop-filter));
+				-webkit-backdrop-filter: blur(var(--backdrop-filter));
+			}
+			/* Headings. Only four heading levels are supported due to the limited range of size keywords higher than medium. */
+			/** All headings. */
+			h1, h2, h3, h4 {
+				text-align: center; /* Increase the prominence of headings by centering them. */
+			}
+			/** Set heading font sizes to larger than medium and escalating with heading level. */
+			h1 {
+				font-size: xxx-large;
+			}
+			h2 {
+				font-size: xx-large;
+			}
+			h3 {
+				font-size: x-large;
+			}
+			h4 {
+				font-size: large;
+			}
+			p {
+				line-height: 1.5; /* Space out the lines to make large bodies of text more readable. This is good for accessibility. */
+			}
+		</style>
 	</head>
 	<body>
 		<main role='main'>
-			<h1>An Interesting Heading</h1>
+			<h1>Infinite Page Template</h1>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
-				<h2>Subsection 1</h2>
-				<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
-				<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
-				<p>Pellentesque porttitor, velit lacinia egestas auctor, diam eros tempus arcu, nec vulputate augue magna vel risus. Cras non magna vel ante adipiscing rhoncus. Vivamus a mi. Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper, ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. Sed velit urna, interdum vel, ultricies vel, faucibus at, quam. Donec elit est, consectetuer eget, consequat quis, tempus quis, wisi.
-				<p>In in nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Donec ullamcorper fringilla eros. Fusce in sapien eu purus dapibus commodo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras faucibus condimentum odio. Sed ac ligula. Aliquam at eros. Etiam at ligula et tellus ullamcorper ultrices. In fermentum, lorem non cursus porttitor, diam urna accumsan lacus, sed interdum wisi nibh nec nisl.
-				<p>Ut tincidunt volutpat urna. Mauris eleifend nulla eget mauris. Sed cursus quam id felis. Curabitur posuere quam vel nibh. Cras dapibus dapibus nisl. Vestibulum quis dolor a felis congue vehicula. Maecenas pede purus, tristique ac, tempus eget, egestas quis, mauris. Curabitur non eros. Nullam hendrerit bibendum justo. Fusce iaculis, est quis lacinia pretium, pede metus molestie lacus, at gravida wisi ante at libero.
-				<p>Quisque ornare placerat risus. Ut molestie magna at mi. Integer aliquet mauris et nibh. Ut mattis ligula posuere velit. Nunc sagittis. Curabitur varius fringilla nisl. Duis pretium mi euismod erat. Maecenas id augue. Nam vulputate. Duis a quam non neque lobortis malesuada.
-				<p>Praesent euismod. Donec nulla augue, venenatis scelerisque, dapibus a, consequat at, leo. Pellentesque libero lectus, tristique ac, consectetuer sit amet, imperdiet ut, justo. Sed aliquam odio vitae tortor. Proin hendrerit tempus arcu. In hac habitasse platea dictumst. Suspendisse potenti. Vivamus vitae massa adipiscing est lacinia sodales. Donec metus massa, mollis vel, tempus placerat, vestibulum condimentum, ligula. Nunc lacus metus, posuere eget, lacinia eu, varius quis, libero.
-				
-				<h2>Subsection 2</h2>
-				<p>Aliquam nonummy adipiscing augue. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
-				<p>Aenean nec lorem. In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula.
-				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
-				<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
-				<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
-				<p>Pellentesque porttitor, velit lacinia egestas auctor, diam eros tempus arcu, nec vulputate augue magna vel risus. Cras non magna vel ante adipiscing rhoncus. Vivamus a mi. Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper, ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. Sed velit urna, interdum vel, ultricies vel, faucibus at, quam. Donec elit est, consectetuer eget, consequat quis, tempus quis, wisi.
+			
+			<h2>Heading Level 2</h2>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h3>Heading Level 3</h3>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h4>Heading Level 4</h4>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
 		</main>
 	</body>
 </html>
