@@ -1,0 +1,48 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0,0,1000,1000'>
+	<title>Coastline</title>
+	<desc>An image suitable as a background. The example is a pretty drawing of a coastline. The image aspect ratio is 1:1 so that devices of different aspect ratios can select a subregion that fits their aspect ratio e.g. a 16:9 device might select a wide rectangle centered in the y-dimension on the horizon line.</desc>
+	<g>
+		<desc>Sky.</desc>
+		<linearGradient id='skyGradient' gradientTransform='rotate(90)'>
+			<stop offset='0%' stop-color='hsl(240, 50%, 20%)'/>
+			<stop offset='25%' stop-color='hsl(210, 50%, 50%)'/>
+			<stop offset='50%' stop-color='hsl(210, 80%, 80%)'/>
+		</linearGradient>
+		<rect x='0' y='0' width='100%' height='100%' fill='url(#skyGradient)'/>
+	</g>
+	<g fill='hsl(0, 0%, 100%)'>
+		<desc>Clouds. An arrangement of randomly-shaped polygons.</desc>
+		<path d='
+			M0,315 l130,43 39,-14 40,28 13,-30 27,17 76,-30 80,18 70,-28 23,56 5,-24 59,48 138,-104 60,84 39,-38 87,28 16,31 18,-25 26,-24 L1000,368 
+			L1000,463 l-19,-3 l-30,1 l-4,-8 l-30,14 l-41,-3 l-49,4 l-124,9 l-84,-8 l-130,4 l-84,-5 l-139,4 l-59,-6 l-48,5 L0,464
+		'>
+			<desc>Large cloud.</desc>
+		</path>
+		<g>
+			<desc>Small clouds.</desc>
+			<defs>
+				<desc>Templates.</desc>
+				<path id='cloud1' d='M0,0 l20,-4 12,-7 39,-3 59,14 13,4'/>
+			</defs>
+			<use href='#cloud1' x='149' y='56'/>
+			<use href='#cloud1' x='892' y='140'/>
+		</g>
+	</g>
+	<g>
+		<desc>Sea.</desc>
+		<linearGradient id='seaGradient' gradientTransform='rotate(90)'>
+			<stop offset='0%' stop-color='hsl(210, 50%, 50%)'/>
+			<stop offset='100%' stop-color='hsl(180, 50%, 80%)'/>
+		</linearGradient>
+		<rect x='0' y='50%' width='100%' height='50%' fill='url(#seaGradient)'/>
+	</g>
+	<path d='M535,500 l10,-13 18.71375903689612,-0.6985043435920204 14.551025316520882,1.849058694640152 19.974793025581796,-0.5029692319666426 15.57556415882661,4.024712243234218 10.586518724040529,-0.6452939818451497 16.67165255718362,-1.0005147716312335 18.095103392398762,-2.2095975312935767 19.943690500215418,-0.3207036884765424 13.584343640860364,-3.6240184004505838 16.515580143045607,0.4874866205487347 11.719738369833903,-4.604895787802103 18.674085750165936,-2.389776949249174 18.900359712390912,4.392090771049478 11.793706298674728,-1.1147052734047613 10.516958774920944,0.9515105850820458 13.484051402397302,0.3620832330047241 12.646314554365064,-3.498143102140594 16.70606076750669,0.9840215986871712 14.385269250600317,4.470633066001527 19.06553674209431,3.3158165285841346 15.137042431613478,-3.176206363466769 12.86988675370996,-3.8959650419528478 13.297041442110928,-3.015876656228639 17.84747575400665,-2.0809832660162533 12.891091843392022,-1.8001343844362627 16.943976979140515,4.461170793568721 10.79185030634703,-0.1729222483465822 10.849908087169531,4.103540812799052 11.549794072605838,2.7361913753283416 11.156113588862606,0.28566359254313145 L1000,475 V530' fill='hsl(120, 20%, 40%)'>
+		<desc>Trees.</desc>
+	</path>
+	<path d='M300,500 L1000,500 v35 l-130,-11' fill='hsl(30, 30%, 90%)'>
+		<desc>Sand.</desc>
+	</path>
+	<path d='M500,500 l10,-5 L1000,498 V513 l-149,-5' fill='hsl(30, 20%, 20%)'>
+		<desc>Cliff.</desc>
+	</path>
+</svg>
