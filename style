@@ -1,0 +1,12 @@
+/*
+Style
+
+A dark HTML background then a slightly lighter body with a set maximum width and white text.
+*/
+
+html {
+	/* Background. A dark gray. */
+	background: hsl(0, 0%, 20%);
+	/* Foreground color. White. */
+	color: white;
+}
