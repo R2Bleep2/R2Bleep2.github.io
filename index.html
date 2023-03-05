@@ -131,12 +131,11 @@
 				--backdrop-filter: 20px;
 				backdrop-filter: blur(var(--backdrop-filter));
 				-webkit-backdrop-filter: blur(var(--backdrop-filter));
-				/* Masking */
-				--mask-image: url('data:image/svg+xml,<svg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271200%27%20height%3D%2790%27>%20<title>Punched%20Hole<%2Ftitle>%20<desc>A%20mask%20of%20a%20punched%20hole.<%2Fdesc>%20<defs>%20<rect%20id%3D%27viewboxRect%27%20width%3D%27100%25%27%20height%3D%27100%25%27%2F>%20<%2Fdefs>%20<mask%20id%3D%27mask%27>%20<use%20href%3D%27%23viewboxRect%27%20fill%3D%27white%27>%20<desc>Base%20positive%20space.<%2Fdesc>%20<%2Fuse>%20<circle%20cx%3D%2730%27%20cy%3D%2750%25%27%20r%3D%2710%27>%20<desc>The%20punched%20hole%20negative%20space.<%2Fdesc>%20<%2Fcircle>%20<%2Fmask>%20<use%20href%3D%27%23viewboxRect%27%20mask%3D%27url%28%23mask%29%27%2F>%20<%2Fsvg>');
+				/* Masking. Looks like shit on iOS Safari; the holes are blurred as if scaled up and sometimes the repeating segments don't match edges properly, causing thin stripes of the background to appear in the gaps. */
+				/** A vertically-repeating punched hole. */
+				--mask-image: url('data:image/svg+xml,<svg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271200px%27%20height%3D%2790px%27>%20<title>Punched%20Hole<%2Ftitle>%20<desc>A%20mask%20of%20a%20punched%20hole.<%2Fdesc>%20<defs>%20<rect%20id%3D%27viewboxRect%27%20width%3D%271200px%27%20height%3D%2790px%27%2F>%20<%2Fdefs>%20<mask%20id%3D%27mask%27>%20<use%20href%3D%27%23viewboxRect%27%20fill%3D%27white%27>%20<desc>Base%20positive%20space.<%2Fdesc>%20<%2Fuse>%20<circle%20cx%3D%2730px%27%20cy%3D%2745px%27%20r%3D%2710px%27>%20<desc>The%20punched%20hole%20negative%20space.<%2Fdesc>%20<%2Fcircle>%20<%2Fmask>%20<use%20href%3D%27%23viewboxRect%27%20mask%3D%27url%28%23mask%29%27%2F>%20<%2Fsvg>');
 				mask-image: var(--mask-image);
 				-webkit-mask-image: var(--mask-image);
-				
-				outline: 1px solid;
 			}
 			
 			/* Headings. Only four heading levels are supported due to the limited range of size keywords higher than medium. */
