@@ -1,195 +1,170 @@
-<!DOCTYPE html>
-<html lang='en-US'>
+<!--A page with a background of ruled paper that scales its elements logically relative to the size of the page.-->
+<!DOCTYPE html> <!--This element tells the user that this document is a HTML document.-->
+<!--The <html> element is the parent to all head and body elements in the document, and is unique in the document (there is only one).-->
+<html lang="en-US">
+	<!--The "head" element contains data about the document that does not directly appear on the page.-->
 	<head>
-		<meta charset='utf-8'>
-		<title>Repeating Mask Image</title>
-		<!--
-		A demonstration of using a mask image repeating vertically to cut shapes out of an element.
-		
-		Compatible with Firefox and iOS Safari.
-		-->
-		<!--meta name='author' content='Author'/-->
-		<!--meta name='description' content=''/-->
-		<!--meta name='keywords' content='apple,orange,pear,pomegranate'/-->
-		<meta name='viewport' content='width=device-width'>
-		<!--link href='favicon.svg' rel='icon' type='image/svg'/-->
+		<meta charset="utf-8"> <!--Set the charset to UTF-8, which includes the vast majority of symbols used in languages and text worldwide. This must be placed in the first 1024 bytes of the document.-->
+		<title>Responsive Ruled Paper v6</title> <!--The title appears in the tab bar in browsers and is also the name suggested when bookmarking a page.-->
+		<!--meta name="author" content="Author"/--> <!--The name of the author of the document.-->
+		<!--meta name="description" content="Standard webpage template containing important elements that are common in webpages."/--> <!--The description of the document.-->
+		<!--meta name="keywords" content="apple,orange,pear,pomegranate"/--> <!--A series of comma-delimited keywords that describe the document.-->
+		<meta name="viewport" content="width=device-width"> <!--Set the viewport width to the true width of the device, not any other value reported by the device as may occur on mobile devices.-->
+		<!--link href="favicon.svg" rel="icon" type="image/svg"/--> <!--The favicon of the document, preceding the title in the tab bar.-->
+
+		<!--An embedded stylesheet element. When writing a website with a single page, an embedded stylesheet may be more portable than a seperate stylesheet file.-->
 		<style>
-			/* Modules */
-				/* Compositing and Blending */
-				
-				/* Animations */
-				
-				/* Backgrounds and Borders */
-				
-				/* Basic User Interface */
-				
-				/* Box Alignment */
-				
-				/* Box Model */
-				
-				/* Charsets */
-				
-				/* Colors */
-				
-				/* Multi-column Layout */
-				
-				/* Conditional Rules */
-				
-				/* Containment */
-				
-				/* Counter Styles */
-				
-				/* Display */
-				
-				/* Flexible Box Layout */
-				
-				/* Fonts */
-				
-				/* Fragmentation */
-				
-				/* Generated Content */
-				
-				/* Grid Layout */
-				
-				/* Images */
-				
-				/* Lists */
-				
-				/* Logical Properties and Values */
-				
-				/* Masking */
-				
-				/* Miscellaneous */
-				
-				/* Motion Path */
-				
-				/* Namespaces */
-				
-				/* Overflow */
-				
-				/* Paged Media */
-				
-				/* Positioned Layout */
-				
-				/* Ruby Layout */
-				
-				/* Scroll Snap */
-				
-				/* Scroll Snap Points */
-				
-				/* Scrollbars */
-				
-				/* Shapes */
-				
-				/* Table */
-				
-				/* Text */
-				
-				/* Text Decoration */
-				
-				/* Transforms */
-				
-				/* Transitions */
-				
-				/* Custom Properties for Cascading Variables */
-				
-				/* Writing Modes */
-				
-				/* CSSOM View */
-				
-				/* Filter Effects */
-				
+			/*
+
+			Responsive Ruled Paper v6
+
+			Changelog:
+			- Simple SVG backgrounds changed to data URLs so that there is no need to store and reference external files.
+
+			*/
+
+			/* Selected text. */
+			::selection {
+				background-color: hsl(305, 20%, 50%);
+				color: white;
+			}
+
 			html {
-				/* Text. */
-				font-family: sans-serif; /* A user-provided sans-serif. */
-			}
-			
-			body {
-				/* Background and borders. */
-				background-image: url(coastline.svg); /* A nice background image. Replace this with another image if you wish. */
-				background-size: cover; /* Scale the image to fill the entire document, leaving no empty space, whilst maintaining the aspect ratio. */
-				background-position: center; /* Center the background in both the x and y dimensions. The y-dimension is centered so that the horizon in the image is always in the center of the viewport. */
+				/* Variables. */
+				--rule-line-spacing: 30px; /* Vertical spacing between rule lines. */
+				--hole-spacing: 90px; /* Vertical spacing (between the centers) of the punched holes in the margin. */
+				--page-vertical-padding: calc(var(--hole-spacing) / 2); /* Top and bottom page padding. */
+				--margin-line-position: 50px; /* Horizontal position of the margin line on the left. */
+				
+				/* Margin. */
+				margin-inline: 20px; /* Left and right margin to offset the page (body element) from the viewport edge. */
+				
+				/* Background. Repeating hexagonal tiles on a solid color overlaid by a soft gradient to suggest a little bit of illumination. */
+				background: hsl(305, 10%, 20%); /* Fallback color. */
+				background-image: linear-gradient(hsl(0, 0%, 0%, 20%), transparent), url(images/hexagonal-tile.svg);
+				background-size: 100%, 20%; /* Scale the background image relative to the width of the viewport. As the viewport gets narrower, the background tiles get smaller, and on tall viewports this fits more detail in the gap between the viewport and the paper. */
 				background-attachment: fixed;
-				/* Box model. */
-				margin: 10px; /* A small amount of margin on the left and right. Noticeable when the viewport is narrower than the maximum main element width. */
+				
+				/* Text. */
+				line-height: var(--rule-line-spacing); /* Align text with the rule lines. */
+				font-family: "Candara", "Calibri", "Arial", sans-serif; /* The text needs to resemble handwriting, but cursive fonts are not suitable for dyslexic readers so a curvy sans-serif like Candara will be used. */
+				
+				/* Scrollbar. */
+				scrollbar-color: hsl(305, 10%, 80%) hsl(305, 10%, 10%);
 			}
-			
+
+			body {
+				/* Sizing. */
+				max-width: 1000px; /* Limit the width of the paper to keep the margin reasonably prominent. */
+				
+				/* Background. Vertically tiled strips of paper overlaid with a vertical margin line and horizontal rule lines and punched with holes. */
+				background: url("data:image/svg+xml,<svg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271000%27%20height%3D%2730%27>%20<title>Rule%20Line<%2Ftitle>%20<desc>A%20tileable%20horizontal%20rule%20line.<%2Fdesc>%20<line%20x1%3D%270%27%20y1%3D%2715%27%20x2%3D%27100%25%27%20y2%3D%2715%27%20fill%3D%27none%27%20stroke%3D%27hsl%28210%2C%2050%25%2C%2050%25%2C%2020%25%29%27%2F>%20<%2Fsvg>") content-box repeat-y, url("data:image/svg+xml,<svg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271000%27%20height%3D%2790%27>%20<title>Paper<%2Ftitle>%20<desc>A%20tileable%20horizontal%20strip%20of%20paper%20with%20a%20punched%20hole%20and%20a%20vertical%20margin%20line.<%2Fdesc>%20<defs>%20<rect%20id%3D%27viewboxRect%27%20width%3D%27100%25%27%20height%3D%27100%25%27>%20<desc>A%20rectangle%20that%20fills%20the%20whole%20viewbox.<%2Fdesc>%20<%2Frect>%20<%2Fdefs>%20<mask%20id%3D%27hole%27>%20<desc>The%20punched%20hole%20mask.<%2Fdesc>%20<use%20href%3D%27%23viewboxRect%27%20fill%3D%27white%27>%20<desc>Base%20positive%20space.<%2Fdesc>%20<%2Fuse>%20<circle%20cx%3D%2730%27%20cy%3D%2750%25%27%20r%3D%2710%27>%20<desc>The%20punched%20hole.<%2Fdesc>%20<%2Fcircle>%20<%2Fmask>%20<g%20mask%3D%27url%28%23hole%29%27>%20<desc>The%20paper%20with%20holes%20punched%20in%20it.<%2Fdesc>%20<use%20href%3D%27%23viewboxRect%27%20fill%3D%27hsl%280%2C%200%25%2C%2080%25%29%27>%20<desc>The%20base%20paper%20color.<%2Fdesc>%20<%2Fuse>%20<path%20d%3D%27M50%2C0%20V90%27%20fill%3D%27none%27%20stroke%3D%27hsl%280%2C%2050%25%2C%2050%25%2C%2050%25%29%27%20stroke-width%3D%272%27>%20<desc>Vertical%20margin%20line.<%2Fdesc>%20<%2Fpath>%20<%2Fg>%20<%2Fsvg>") border-box repeat-y;
+				
+				/* Margin. */
+				margin: 20px auto; /* Distribute space evenly between the left and right margins to center the page. */
+				
+				/* Padding. Empty space above and below the area with rule lines. */
+				padding-top: var(--page-vertical-padding);
+				padding-bottom: var(--page-vertical-padding);
+				
+				/* Border. */
+				border-radius: 20px; /* Round the corners of the page. Paper with rounded corners is seen as fancier. */
+				
+				/* Shadow. */
+				box-shadow: 0px 0px 10px; /* Some shadow around the edge of the page to raise it from the background. */
+			}
+
 			main {
-				/* Box model. */
-				margin: 20px auto; /* Add some margin on the top and bottom and space the left and right margins equally as the main element changes size to center it. */
-				padding: 20px;
-				/* Background and borders. */
-				background: hsl(0, 0%, 100%, 70%); /* An almost opaque white background that allows a little bit of the background image to be seen. */
-				/** Some corner rounding. */
-				--border-radius: 10px;
-				border-radius: var(--border-radius); 
-				-webkit-border-radius: var(--border-radius); 
-				/* Box sizing. */
-				max-width: 1000px; /* A maximum width that prevents the content (text in particular) getting too stretched out on wide viewports. */
-				/* Filter Effects */
-				/** Blur the body background to prevent shapes interfering with the main content. */
-				--backdrop-filter: 20px;
-				backdrop-filter: blur(var(--backdrop-filter));
-				-webkit-backdrop-filter: blur(var(--backdrop-filter));
-				/* Masking. Looks like shit on iOS Safari; the holes are blurred as if scaled up and sometimes the repeating segments don't match edges properly, causing thin stripes of the background to appear in the gaps. */
-				/** A vertically-repeating punched hole. */
-				--mask-image: url('data:image/svg+xml,<svg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%271200px%27%20height%3D%2790px%27>%20<title>Punched%20Hole<%2Ftitle>%20<desc>A%20mask%20of%20a%20punched%20hole.<%2Fdesc>%20<defs>%20<rect%20id%3D%27viewboxRect%27%20width%3D%271200px%27%20height%3D%2790px%27%2F>%20<%2Fdefs>%20<mask%20id%3D%27mask%27>%20<use%20href%3D%27%23viewboxRect%27%20fill%3D%27white%27>%20<desc>Base%20positive%20space.<%2Fdesc>%20<%2Fuse>%20<circle%20cx%3D%2730px%27%20cy%3D%2745px%27%20r%3D%2710px%27>%20<desc>The%20punched%20hole%20negative%20space.<%2Fdesc>%20<%2Fcircle>%20<%2Fmask>%20<use%20href%3D%27%23viewboxRect%27%20mask%3D%27url%28%23mask%29%27%2F>%20<%2Fsvg>');
-				mask-image: var(--mask-image);
-				-webkit-mask-image: var(--mask-image);
+				/* Variables. */
+				--main-position: 10px; /* X-offset of the main content from the margin line. */
+				--main-left-padding: calc(var(--margin-line-position) + var(--main-position)); /* X-offset of the main content from the left page edge. */
+				
+				/* Padding. */
+				padding-left: var(--main-left-padding);
+				padding-right: 10px; /* The spacing between the text and the right edge of the page. */
 			}
-			
-			/* Headings. Only four heading levels are supported due to the limited range of size keywords higher than medium. */
-			/** All headings. */
-			h1, h2, h3, h4 {
-				text-align: center; /* Increase the prominence of headings by centering them. */
+
+			/* All direct children of the main element. */
+			main > * {
+				/* Margin. */
+				margin: 0; /* Remove default margins to avoid misalignment with the rule lines. */
+				position: relative; /* Enable relative positioning for alignment with the rule lines with values for each element. */
 			}
-			/** Set heading font sizes to larger than medium and escalating with heading level. */
+
+			/* Headings. Centering and capitalization are important methods of making these elements more prominent. */
+			/** All. */
+			h1, h2, h3, h4, h5, h6 {
+				/* Text. */
+				text-align: center;
+				text-transform: uppercase;
+			}
+			/* Level 1. */
 			h1 {
-				font-size: xxx-large;
+				/* Text. */
+				font-size: 36px;
+				
+				/* Rule line alignment. */
+				top: -12px;
 			}
-			h2 {
-				font-size: xx-large;
-			}
-			h3 {
-				font-size: x-large;
-			}
-			h4 {
-				font-size: large;
-			}
+
+			/* Paragraphs. */
 			p {
-				line-height: 1.5; /* Space out the lines to make large bodies of text more readable. This is good for accessibility. */
+				/* Rule line alignment. */
+				top: -6.5px;
+				
+				/* Text. */
+				font-size: 18px; /* Enlarge the text to make it easier to read and make font details more prominent on low PPI devices. */
 			}
-			
+			/** To avoid walls of text, paragraphs that are preceded by another element need to be spaced from the preceding element. */
+			* + p {
+				margin-top: var(--rule-line-spacing);
+			}
+
+			/* Images. Images need to be drawn in heights that are multiples of the rule line spacing. They need to be styled as if physical photographs stuck down onto the paper. Four pieces of sticky tape should appear in the corners of the image, if possible. */
 			img {
-				max-width: 100%; /* Limit the displayed width to the width of the containing element. */
-			}
-			
-			/* Figures. */
-			figure {
-				margin: 0; /* Remove the default margin. */
+				height: calc(var(--rule-line-spacing) * 20); /* Set all image heights to a constant multiple of the rule line spacing to avoid misalignment of the text that follows. Ideally, image heights would be set dynamically, but the CSS functions to do so are experimental and not widely supported. */
+				display: block; /* Add the image to the stack of blocks. */
+				margin-top: var(--rule-line-spacing); /* Seperate the image from the text above. */
+				margin-inline: auto; /* Center the image. */
+				max-width: 100%; /* Limit the width of the image to the width of the main text. */
+				object-fit: cover; /* Should an image's width exceed the width of the main text, crop its left and right edges til it fits. */
+				outline: 1px outset white; /* Add a thin outsetted outline to suggest the photograph has thickness. */
 			}
 		</style>
 	</head>
+	<!--The <body> element directly specifies the content of the document i.e. what is seen in the viewport.-->
 	<body>
-		<main role='main'>
-			<h1>Infinite Page Template</h1>
-			<figure title='A truss of the International Space Station orbiting the Earth.'>
-				<img src='STS-115_EVA_2_on_Day_5.jpg' title='A truss of the International Space Station orbiting the Earth.'/>
-				<figcaption>A truss of the International Space Station orbiting the Earth.</caption>
-			</figure>
+		<!--The <header> element appears at the top of the page, and may be used for information about the document or navigational tools.-->
+		<!--header>
+			
+		</header-->
+		<!--The <main> element encloses the main body of text in the document, usually the arrangement of headers, paragraphs and inline elements.-->
+		<main>
+			<h1>Responsive Ruled Paper v6</h1>
+			
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
 			
-			<h2>Heading Level 2</h2>
 			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			
 			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
 			
-			<h3>Heading Level 3</h3>
-			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
-			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			<p>Pellentesque porttitor, velit lacinia egestas auctor, diam eros tempus arcu, nec vulputate augue magna vel risus. Cras non magna vel ante adipiscing rhoncus. Vivamus a mi. Morbi neque. Aliquam erat volutpat. Integer ultrices lobortis eros. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin semper, ante vitae sollicitudin posuere, metus quam iaculis nibh, vitae scelerisque nunc massa eget pede. Sed velit urna, interdum vel, ultricies vel, faucibus at, quam. Donec elit est, consectetuer eget, consequat quis, tempus quis, wisi.
 			
-			<h4>Heading Level 4</h4>
-			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
-			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			<p>In in nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Donec ullamcorper fringilla eros. Fusce in sapien eu purus dapibus commodo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras faucibus condimentum odio. Sed ac ligula. Aliquam at eros. Etiam at ligula et tellus ullamcorper ultrices. In fermentum, lorem non cursus porttitor, diam urna accumsan lacus, sed interdum wisi nibh nec nisl.
+			
+			<!--p>Ut tincidunt volutpat urna. Mauris eleifend nulla eget mauris. Sed cursus quam id felis. Curabitur posuere quam vel nibh. Cras dapibus dapibus nisl. Vestibulum quis dolor a felis congue vehicula. Maecenas pede purus, tristique ac, tempus eget, egestas quis, mauris. Curabitur non eros. Nullam hendrerit bibendum justo. Fusce iaculis, est quis lacinia pretium, pede metus molestie lacus, at gravida wisi ante at libero.
+			
+			<p>Quisque ornare placerat risus. Ut molestie magna at mi. Integer aliquet mauris et nibh. Ut mattis ligula posuere velit. Nunc sagittis. Curabitur varius fringilla nisl. Duis pretium mi euismod erat. Maecenas id augue. Nam vulputate. Duis a quam non neque lobortis malesuada.
+			
+			<p>Praesent euismod. Donec nulla augue, venenatis scelerisque, dapibus a, consequat at, leo. Pellentesque libero lectus, tristique ac, consectetuer sit amet, imperdiet ut, justo. Sed aliquam odio vitae tortor. Proin hendrerit tempus arcu. In hac habitasse platea dictumst. Suspendisse potenti. Vivamus vitae massa adipiscing est lacinia sodales. Donec metus massa, mollis vel, tempus placerat, vestibulum condimentum, ligula. Nunc lacus metus, posuere eget, lacinia eu, varius quis, libero.
+			
+			<p>Aliquam nonummy adipiscing augue. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+			
+			<p>Aenean nec lorem. In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula.-->
 		</main>
+		<!--The <footer> element appears at the bottom of the page, and may be used for the same purposes as the header, and often also copyright information or contact details.-->
+		<!--footer>
+			
+		</footer-->
 	</body>
 </html>
