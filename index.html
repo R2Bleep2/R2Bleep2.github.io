@@ -6,34 +6,43 @@
 		<!--meta name='author' content='Author'/-->
 		<!--meta name='description' content='A webpage composed of nested subsections.'/-->
 		<!--meta name='keywords' content='apple,orange,pear,pomegranate'/-->
+		<!--Match the properties of the viewport with the device.-->
 		<meta name='viewport' content='width=device-width'>
+		<meta name='viewport' content='height=device-height'>
 		<!--link href='favicon.svg' rel='icon' type='image/svg'/-->
 		<style>
-			/* All viewport sizes. */
-			html {
-				/* Text */
-				font-family: sans-serif;
-			}
-			/* Widescreen (laptop and desktop). */
+			@media screen {
+				html {
+					/* Variables. */
+					--grid-gap: 10px; /* Default spacing between grid cells. */
+					--narrow-grid-column-width: 0.5fr;
+					--wide-grid-column-width: 2fr;
+					/* Text */
+					font-family: sans-serif;
+				}
+				
 				body {
+					/* Box model. */
+					margin: 0;
+					padding: var(--grid-gap); /* Spacing from the viewport edge. */
+					
 					/* Background and Borders */
 					background-image: url(coastline.svg);
 					background-size: cover; /* Scale the image to fill the entire document, leaving no empty space, whilst maintaining the aspect ratio. */
 					background-position: center; /* Center the background in both the x and y dimensions. The y-dimension is centered so that the horizon in the image is always in the center of the viewport. The x-dimension is centered so that the focus is always on the center of the image. */
 					background-attachment: fixed;
-					/* Box model. */
-					margin: auto; /* Center the body by distributing the left and right margins evenly. */
-					padding: 20px;
-					/* Grid Layout. The header and footer should be rows with the same width as the body. The elements vertically in between (the navigation, main and aside elements) should be columns. */
-					display: grid;
-					grid-template-columns: 0.5fr 2fr 0.5fr; /* Small columns for the navigation and aside elements and a large column for the main element. */
+					
+					/* Grid layout. */
+					display: grid; /* Use a grid layout for children. */
 					align-items: start; /* Rows should only be as tall as their content. */
-					gap: 20px;
-					/* Box sizing. */
-					max-width: 1500px; /* Limit the width of the body on wide displays to avoid stretching text too much. */
+					gap: var(--grid-gap); /* Gap between cells. */
 				}
 				
-				/* All children of the body. */
+				p {
+					line-height: 1.5em; /* Increase the line spacing for reading speed and accessibility. */
+				}
+				
+				/* All direct children of the body; header, footer, nav, main and aside. */
 				body > * {
 					/* Background and borders. */
 					background: hsl(0, 0%, 100%, 90%);
@@ -42,7 +51,7 @@
 					border-radius: var(--border-radius); 
 					-webkit-border-radius: var(--border-radius); 
 					/* Box model. */
-					padding: 20px;
+					padding: var(--grid-gap);
 					/* Filter Effects */
 					/** Blur the body background to prevent shapes interfering with the main content. */
 					--backdrop-filter: blur(20px);
@@ -50,13 +59,73 @@
 					-webkit-backdrop-filter: var(--backdrop-filter);
 				}
 				
-				header, footer {
-					grid-column: 1 / 4; /* Grid Layout. These column elements should stretch across the width of the body. */
+				/* Hide body children other than the main element by default; there are rules later to introduce them if the viewport is wide enough. */
+				header, footer, nav, aside {
+					display: none; /* Hide both the navigation and complementary elements to save space for the main element. */
 				}
 				
-				p {
-					line-height: 1.5em; /* Increase the line spacing for reading speed and accessibility. */
+				/* Width queries. */
+				/** Low width (vertical tablets and horizontal smartphones). */
+				@media (min-width: 500px) {
+					body {
+						/* Grid layout. */
+						grid-template-columns: var(--narrow-grid-column-width) var(--wide-grid-column-width) ; /* A small column for the navigation element and a large column for the main element. */
+					}
+					
+					header, footer {
+						grid-column: 1 / 3; /* These column elements should stretch across the width of the body. */
+					}
+					
+					/* There is enough horizontal space to introduce the nav element. */
+					nav {
+						display: grid;
+					}
 				}
+				
+				/** Medium width (laptop, desktop and horizontal tablets). */
+				@media (min-width: 1000px) {
+					body {
+						/* Grid Layout. The header and footer should be rows with the same width as the body. The elements vertically in between (the navigation, main and aside elements) should be columns. */
+						grid-template-columns: var(--narrow-grid-column-width) var(--wide-grid-column-width) var(--narrow-grid-column-width); /* Small columns for the navigation and aside elements and a large column for the main element. */
+					}
+					
+					header, footer {
+						grid-column: 1 / 4; /* These column elements should stretch across the width of the body. */
+					}
+					
+					/* Introduce the aside element. */
+					aside {
+						display: grid;
+					}
+				}
+				/** High width (UHD TVs). */
+				@media (min-width: 3000px) {
+					html {
+						/* Variables. Double many of these to account for distant viewing of the screen. */
+						--double-grid-gap: calc(var(--grid-gap) * 2);
+						font-size: 200%;
+					}
+					
+					body {
+						padding: var(--double-grid-gap);
+						
+						gap: var(--double-grid-gap);
+					}
+					
+					body > * {
+						padding: var(--double-grid-gap);
+					}
+				}
+				
+				/* Height queries. */
+				/** High height (smartwatches and horizontal smartphones). */
+				@media (min-height: 500px) {
+					/* Introduce the header and footer. */
+					header, footer {
+						display: grid;
+					}
+				}
+			}
 		</style>
 	</head>
 	<body>
