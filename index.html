@@ -2,35 +2,49 @@
 <html lang='en-US'>
 	<head>
 		<meta charset='utf-8'>
-		<title>Article Template v2</title>
+		<title>Article Template v3</title>
 		<!--meta name='author' content='Author'/-->
 		<!--meta name='description' content='A webpage composed of nested subsections.'/-->
+		<!--
+		Changelog:
+		- Simplified the layout considerably. This is only a template, after all.
+		-->
 		<!--meta name='keywords' content='apple,orange,pear,pomegranate'/-->
 		<!--Match the properties of the viewport with the device.-->
-		<meta name='viewport' content='width=device-width'>
-		<meta name='viewport' content='height=device-height'>
+		<meta name='viewport' content='width=device-width, height=device-height'>
 		<!--link href='favicon.svg' rel='icon' type='image/svg'/-->
 		<style>
+			body {
+				font-family: 'Calibri', sans-serif;
+			}
+			
+			/* Hide the navigation and aside elements by default. These can be introduced by rules further down the cascade where suitable for the media type or size. */
+			nav, aside {
+				display: none;
+			}
+			
+			h1, h2, h3, h4, h5, h6 {
+				margin: 0; /* Remove the default margin. */
+			}
+			
+			p {
+				/* Inline layout. */
+				line-height: 1.5em; /* Increase the line spacing for reading speed and accessibility. */
+			}
+			
 			@media screen {
 				html {
 					/* Variables. */
-					--grid-gap: 10px; /* Default spacing between grid cells. */
-					--narrow-grid-column-width: 0.5fr;
-					--wide-grid-column-width: 2fr;
-					/* Text */
-					font-family: sans-serif;
+					--grid-gap: 0.5em; /* Default spacing between grid cells. */
 				}
 				
 				body {
-					/* Box model. */
-					margin: 0;
-					padding: var(--grid-gap); /* Spacing from the viewport edge. */
+					/* Background and borders. */
+					background: hsl(0, 0%, 70%);
 					
-					/* Background and Borders */
-					background-image: url(coastline.svg);
-					background-size: cover; /* Scale the image to fill the entire document, leaving no empty space, whilst maintaining the aspect ratio. */
-					background-position: center; /* Center the background in both the x and y dimensions. The y-dimension is centered so that the horizon in the image is always in the center of the viewport. The x-dimension is centered so that the focus is always on the center of the image. */
-					background-attachment: fixed;
+					/* Box model. */
+					margin: 0 auto; /* Center the body by equally spacing margin on the left and right. */
+					padding: var(--grid-gap); /* Spacing from the viewport edge. */
 					
 					/* Grid layout. */
 					display: grid; /* Use a grid layout for children. */
@@ -38,38 +52,38 @@
 					gap: var(--grid-gap); /* Gap between cells. */
 				}
 				
-				p {
-					line-height: 1.5em; /* Increase the line spacing for reading speed and accessibility. */
-				}
-				
 				/* All direct children of the body; header, footer, nav, main and aside. */
 				body > * {
 					/* Background and borders. */
-					background: hsl(0, 0%, 100%, 90%);
-					/** Some corner rounding. */
-					--border-radius: 10px;
-					border-radius: var(--border-radius); 
-					-webkit-border-radius: var(--border-radius); 
+					background: hsl(0, 0%, 100%);
+					
+					/* Basic User Interface. */
+					outline: 0.05em solid;
+					
 					/* Box model. */
 					padding: var(--grid-gap);
-					/* Filter Effects */
-					/** Blur the body background to prevent shapes interfering with the main content. */
-					--backdrop-filter: blur(20px);
-					backdrop-filter: var(--backdrop-filter);
-					-webkit-backdrop-filter: var(--backdrop-filter);
 				}
 				
-				/* Hide body children other than the main element by default; there are rules later to introduce them if the viewport is wide enough. */
-				header, footer, nav, aside {
-					display: none; /* Hide both the navigation and complementary elements to save space for the main element. */
+				/** Dark mode query. */
+				@media (prefers-color-scheme: dark) {
+					body {
+						background: hsl(210, 50%, 10%); /* Set the fallback color to a dark gray. */
+						
+						color: hsl(210, 50%, 80%);
+					}
+					
+					/* All direct children of the body. */
+					body > * {
+						background: hsl(210, 50%, 20%, 50%);
+					}
 				}
 				
 				/* Width queries. */
 				/** Low width (vertical tablets and horizontal smartphones). */
-				@media (min-width: 500px) {
+				@media (min-width: 700px) {
 					body {
 						/* Grid layout. */
-						grid-template-columns: var(--narrow-grid-column-width) var(--wide-grid-column-width) ; /* A small column for the navigation element and a large column for the main element. */
+						grid-template-columns: 10em 1fr; /* A small column for the navigation element and a large column for the main element. */
 					}
 					
 					header, footer {
@@ -78,15 +92,15 @@
 					
 					/* There is enough horizontal space to introduce the nav element. */
 					nav {
-						display: grid;
+						display: initial;
 					}
 				}
 				
-				/** Medium width (laptop, desktop and horizontal tablets). */
+				/** Medium width (laptop and horizontal tablets). */
 				@media (min-width: 1000px) {
 					body {
 						/* Grid Layout. The header and footer should be rows with the same width as the body. The elements vertically in between (the navigation, main and aside elements) should be columns. */
-						grid-template-columns: var(--narrow-grid-column-width) var(--wide-grid-column-width) var(--narrow-grid-column-width); /* Small columns for the navigation and aside elements and a large column for the main element. */
+						grid-template-columns: 10em 1fr 10em; /* Small columns for the navigation and aside elements and a large column for the main element. */
 					}
 					
 					header, footer {
@@ -95,34 +109,19 @@
 					
 					/* Introduce the aside element. */
 					aside {
-						display: grid;
+						display: initial;
 					}
 				}
-				/** High width (UHD TVs). */
+				/** High width (desktop). */
+				@media (min-width: 2000px) {
+					body {
+						grid-template-columns: 10em 1fr 10em; /* Widen the navigation and complementary elements to use the extra space. */
+					}
+				}
+				/** Extreme width (UHD TVs). */
 				@media (min-width: 3000px) {
 					html {
-						/* Variables. Double many of these to account for distant viewing of the screen. */
-						--double-grid-gap: calc(var(--grid-gap) * 2);
 						font-size: 200%;
-					}
-					
-					body {
-						padding: var(--double-grid-gap);
-						
-						gap: var(--double-grid-gap);
-					}
-					
-					body > * {
-						padding: var(--double-grid-gap);
-					}
-				}
-				
-				/* Height queries. */
-				/** High height (smartwatches and horizontal smartphones). */
-				@media (min-height: 500px) {
-					/* Introduce the header and footer. */
-					header, footer {
-						display: grid;
 					}
 				}
 			}
@@ -130,14 +129,14 @@
 	</head>
 	<body>
 		<!--For compatibility with older browsers, landmark roles are repeated on elements that include them by default in modern HTML.-->
-		<header role="banner">
-			<h2>Header Region</h2>
+		<header role='banner'>
+			<h2>Header Element</h2>
 		</header>
-		<nav role="navigation">
-			<h2>Navigation Region</h2>
+		<nav role='navigation'>
+			<h2>Navigation Element</h2>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
 		</nav>
-		<main role="main">
+		<main role='main'>
 			<h1>Infinite Page Template</h1>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
 			
@@ -152,12 +151,36 @@
 			<h4>Heading Level 4</h4>
 			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
 			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h2>Heading Level 2</h2>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h3>Heading Level 3</h3>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h4>Heading Level 4</h4>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h2>Heading Level 2</h2>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h3>Heading Level 3</h3>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
+			
+			<h4>Heading Level 4</h4>
+			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
+			<p>Donec ut est in lectus consequat consequat. Etiam eget dui. Aliquam erat volutpat. Sed at lorem in nunc porta tristique. Proin nec augue. Quisque aliquam tempor magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac magna. Maecenas odio dolor, vulputate vel, auctor ac, accumsan id, felis. Pellentesque cursus sagittis felis.
 		</main>
-		<aside role="complementary">
-			<h2>Complementary Region</h2>
+		<aside role='complementary'>
+			<h2>Complementary Element</h2>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
 		</aside>
-		<footer role="contentinfo">
+		<footer role='contentinfo'>
 			<p>&copy; 3042 Alien Beings Inc.</p>
 		</footer>
 	</body>
