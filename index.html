@@ -78,9 +78,9 @@
 					}
 				}
 				
-				/* Width queries. */
+				/* Width queries. These are specified in ems, not pixels, so that Firefox users with "Zoom text only" enabled still activate the queries when zooming.*/
 				/** Low width (vertical tablets and horizontal smartphones). */
-				@media (min-width: 700px) {
+				@media (min-width: 30em) {
 					body {
 						/* Grid layout. */
 						grid-template-columns: 10em 1fr; /* A small column for the navigation element and a large column for the main element. */
@@ -97,7 +97,7 @@
 				}
 				
 				/** Medium width (laptop and horizontal tablets). */
-				@media (min-width: 1000px) {
+				@media (min-width: 50em) {
 					body {
 						/* Grid Layout. The header and footer should be rows with the same width as the body. The elements vertically in between (the navigation, main and aside elements) should be columns. */
 						grid-template-columns: 10em 1fr 10em; /* Small columns for the navigation and aside elements and a large column for the main element. */
@@ -113,13 +113,13 @@
 					}
 				}
 				/** High width (desktop). */
-				@media (min-width: 2000px) {
+				@media (min-width: 100em) {
 					body {
 						grid-template-columns: 10em 1fr 10em; /* Widen the navigation and complementary elements to use the extra space. */
 					}
 				}
 				/** Extreme width (UHD TVs). */
-				@media (min-width: 3000px) {
+				@media (min-width: 200em) {
 					html {
 						font-size: 200%;
 					}
