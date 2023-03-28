@@ -1,16 +1,40 @@
 <!DOCTYPE html>
-<script>
-	// Document fields to be used by the processor (page.js).
-	document.title = 'Hello, world!' // The title to be repeated as a <h1> top-level heading.
-</script>
-<style>
-	main {
-		text-transform: uppercase;
-	}
-</style>
-<!--Link to the processor.-->
-<script src='page.js'></script>
-<!--Main element. Put the main page content in here.-->
-<main>
-	Hello, world!
-</main>
+<html lang='en-US'>
+	<head>
+		<meta charset='utf-8'>
+		<title>Webpage Template</title>
+		<!--meta name='description' content='Visualization of CSS absolute and relative lengths.'/-->
+		<meta name='viewport' content='width=device-width'>
+		<style>
+			div {
+				background-color: hsl(0, 50%, 80%);
+				margin-block: 1cm;
+			}
+			#cm {
+				width: 1cm;
+			}
+			#in {
+				width: 1in;
+			}
+			#px {
+				width: 1px;
+			}
+			#px96 {
+				width: 96px;
+			}
+			#em {
+				width: 1em;
+			}
+		</style>
+	</head>
+	<body>
+		<main role='main'>
+			<h2>Absolute Lengths</h2>
+			<div id='cm'>cm</div>
+			<div id='in'>in</div>
+			<div id='px'>px</div>
+			<div id='px96'>96px</div>
+			<div id='em'>em</div>
+		</main>
+	</body>
+</html>
