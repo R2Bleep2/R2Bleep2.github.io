@@ -1,40 +1,16 @@
 <!DOCTYPE html>
 <html lang='en-US'>
-	<head>
-		<meta charset='utf-8'>
-		<title>Webpage Template</title>
-		<!--meta name='description' content='Visualization of CSS absolute and relative lengths.'/-->
-		<meta name='viewport' content='width=device-width'>
-		<style>
-			div {
-				background-color: hsl(0, 50%, 80%);
-				margin-block: 1cm;
-			}
-			#cm {
-				width: 1cm;
-			}
-			#in {
-				width: 1in;
-			}
-			#px {
-				width: 1px;
-			}
-			#px96 {
-				width: 96px;
-			}
-			#em {
-				width: 1em;
-			}
-		</style>
-	</head>
-	<body>
-		<main role='main'>
-			<h2>Absolute Lengths</h2>
-			<div id='cm'>cm</div>
-			<div id='in'>in</div>
-			<div id='px'>px</div>
-			<div id='px96'>96px</div>
-			<div id='em'>em</div>
-		</main>
-	</body>
+	<meta charset='utf-8'>
+	<!--A webpage functioning as an offline javascript console.-->
+	<link href='basic.css' rel='stylesheet'/> <!--Simple stylesheet. -->
+	<!--Dependencies e.g. <script src='[library directory]'></script>.-->
+	<script src='libraries/common.js'></script>
+	<div id='device-pixel-ratio'></div>
+	<div id='css-pixels-per-inch'></div>
+	<!--Main script.-->
+	<script>
+		const cssPixelsPerInch = 96 // The nominal number of CSS pixels per inch.
+		document.getElementById('device-pixel-ratio').innerHTML = 'Device pixel ratio = ' + window.devicePixelRatio
+		document.getElementById('css-pixels-per-inch').innerHTML = 'CSS pixels per inch = ' + window.devicePixelRatio * cssPixelsPerInch
+	</script>
 </html>
