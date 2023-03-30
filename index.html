@@ -23,8 +23,7 @@
 			}
 			main {
 				overflow-y: scroll;
-				-webkit-overflow-scrolling: touch;
-				scroll-behaviour: smooth;
+				-webkit-overflow-scrolling: touch; /* This is a non-standard feature that is used on old versions of iOS Safari. It states whether or not to use the momentum-based scrolling found on that browser. When a user scrolls with their finger and takes their finger off the screen, the scrolling continues briefly i.e. it has an illusion of momentum. */
 			}
 			h1 {
 				margin: 0;
