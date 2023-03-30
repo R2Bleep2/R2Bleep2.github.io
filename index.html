@@ -10,20 +10,25 @@
 				--inset: 1em;
 			}
 			body {
-				margin: var(--inset);
+				margin: 0;
 				font-family: 'Calibri', sans-serif;
-				display: grid;
-				height: 80vh;
-				gap: var(--inset);
+				display: flex;
+				flex-direction: column;
+				height: 100vh;
 			}
 			body > * {
 				border: 0.1em solid;
 				border-radius: 0.5em;
+				flex-grow: 1;
 				padding: var(--inset);
+				margin: var(--inset);
+			}
+			footer {
+				text-align: center;
 			}
 			main {
 				overflow-y: scroll;
-				-webkit-overflow-scrolling: touch; /* This is a non-standard feature that is used on old versions of iOS Safari. It states whether or not to use the momentum-based scrolling found on that browser. When a user scrolls with their finger and takes their finger off the screen, the scrolling continues briefly i.e. it has an illusion of momentum. */
+				-webkit-overflow-scrolling: touch; /* This is a non-standard feature that is used on old versions of iOS Safari (versions 5 - 12.2). It states whether or not to use the momentum-based scrolling found on that browser. When a user scrolls with their finger and takes their finger off the screen, the scrolling continues briefly i.e. it has an illusion of momentum. */
 			}
 			h1 {
 				margin: 0;
