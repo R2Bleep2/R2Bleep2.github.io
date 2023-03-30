@@ -2,44 +2,91 @@
 <html lang='en-US'>
 	<head>
 		<meta charset='utf-8'>
-		<title>Webpage Template</title>
-		<!--meta name='description' content='Exclude my iPad tab bar control (the thin black rectangle at the bottom of the screen) from the document area using safe area insets.'/-->
-		<meta name='viewport' content='width=device-width, viewport-fit=cover'> <!-- "viewport-fit=cover" defines the viewport to be the whole available screen space. -->
+		<!-- Changelog:
+		- Removed the navigation links from the heading groups as they were appearing in screen readers despite not providing meaning to the main text content. These are instead replaced with a sticky footer containing the navigation links. -->
+		<title>Article Name is an article that has a name</title> <!-- The title element. Up to 55 characters are read by search engines and displayed as the heading text of entries. -->
+		<meta name='viewport' content='width=device-width'>
 		<style>
-			body {
-				margin: 0;
-			}
-			main {
-				margin: 1em;
-			}
-			h1, h2, h3, h4, h5, h6 {
-				margin: 0;
-			}
-			footer {
-				background-color: white;
-				position: sticky;
-				position: -webkit-sticky;
-				bottom: 0;
-				padding: 0.5em;
-				padding-bottom: calc(0.5em + env(safe-area-inset-bottom));
-				outline: 0.1em solid;
-				display: flex;
-				gap: 0.5em;
-				flex-wrap: wrap;
-			}
-			footer > * {
-				flex-grow: 1;
-				text-align: center;
-				outline: 0.1em solid;
-			}
-		</style>
+/* Generic styling for the article of an encyclopedia or wiki. */
+/** General elements. */
+body {
+	margin: 0.5em;
+	margin-bottom: 0; /* Disable the bottom margin so that the sticky footer doesn't move when the user is at the bottom of the page. */
+	font-family: 'Calibri', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+p {
+	line-height: 1.5em; /* Space out lines to break up walls of text. */
+	text-indent: 1em; /* Indent paragraphs to distinguish them from lines. */
+	margin: 0.5em;
+}
+footer {
+	/* Make the footer sticky. */
+	position: sticky;
+	position: -webkit-sticky; /* This prefixed value is for compatibility with old iOS Safari. */
+	bottom: 0;
+	padding: 0.2em;
+	padding-bottom: calc(0.2em + env(safe-area-inset-bottom));
+	display: flex;
+	gap: 0.2em;
+	flex-wrap: wrap;
+}
+
+/** Child elements. */
+footer > * {
+	background-color: white;
+	flex-grow: 1;
+	text-align: center;
+	outline: 0.1em solid;
+	border-radius: 0.2em;
+}
+</style>
 	</head>
 	<body>
-		<!--header role='banner'>
-			<h2>Header</h2>
-		</header-->
-		<main role='main'>
-			<h1>Webpage Template</h1>
+		<!-- The banner element, containing a few prominent elements such as the website name. -->
+		<header role='banner'>
+			<h1><span id='name'>Article Name</span> is an article that has a name</h1> <!-- The top-level heading, duplicated from the title element. The first few words in this element constitute the article name. -->
+			<p id='introduction'>An interesting introduction that is a whole paragraph. Spam and eggs etc. etc. etc. This is longer than the title paragraph element. Much longer, in fact. You could even call it an actual proper-sized paragraph. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem. <!-- The article introduction. This is a full paragraph continuing the introduction started in the title. The text here is copied from the description meta element. -->
+		</header>
+		
+		<!-- The aside or complementary element. A table of facts about the article, possibly including a profile picture. -->
+		<dl id='infobox' role='complementary' aria-labelledby='infobox-header'>
+			<h2 id='infobox-header'>Infobox</h2>
+			<dt>Born<dd>3000 AD, outer space
+			<dt>Type<dd>Space Man
+			<dt>Favorite food<dd>Spam and eggs
+		</dl>
+		
+		<menu id='categories' aria-label='Categories'>
+			<h2>Categories</h2>
+			<li><a href>Fruit</a></li>
+			<li><a href>Vegetables</a></li>
+			<li><a href>Healthy Things</a></li>
+		</menu>
+		
+		<!-- The list of keywords of the article that each link to pages containing a list of articles featuring that keyword. Copied from the keywords meta element. -->
+		<menu id='keywords' aria-label='Keywords'>
+			<h2>Keywords</h2>
+			<li><a href>Apple</a></li>
+			<li><a href>Orange</a></li>
+			<li><a href>Lemon</a></li>
+			<li><a href>Pear</a></li>
+		</menu>
+		
+		<!-- A table of contents listing headings and providing links to them. Useful for long articles with many headers. Not so useful for the opposite case, especially if the article has no headings below the article name. -->
+		<ol id='table-of-contents' role='navigation' aria-labelledby='table-of-contents-header'>
+			<h2 id='table-of-contents-header'>Table of Contents</h2>
+			<li><a href='#heading-1'>Heading 1</a></li>
+			<li><a href='#heading-2'>Heading 2</a></li>
+			<li><a href='#heading-3'>Heading 3</a></li>
+			<li><a href='#heading-4'>Heading 4</a></li>
+			<li><a href='#heading-5'>Heading 5</a></li>
+		</ol>
+		
+		<!-- The main body of text and images. -->
+		<main id='main' role='main'>
 			<h2 id='heading-1'>Heading 1</h2>
 			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean nec lorem.
 			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
@@ -96,13 +143,24 @@
 			<p>Aliquam nonummy adipiscing augue. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
 			<p>Aenean nec lorem. In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula.
 		</main>
-		<footer role='contentinfo'>
+		
+		<!-- The navigation element, here implemented as a menu of external links. -->
+		<menu id='external-links' role='navigation' aria-labelledby='external-links-header'>
+			<h2 id='external-links-header'>External Links</h2>
+			<li><a href='link here'>Homepage</a></li>
+			<li><a href='link here'>Related articles</a></li>
+			<li><a href='link here'>What links here</a></li>
+		</menu>
+		
+		<!-- The footer element. Contains navigation links between elements on the page. -->
+		<footer id='footer' role='navigation'>
 			<a href='#'>Page top</a>
-			<a href='#heading-1'>Heading 1</a>
-			<a href='#heading-2'>Heading 2</a>
-			<a href='#heading-3'>Heading 3</a>
-			<a href='#heading-4'>Heading 4</a>
-			<a href='#heading-5'>Heading 5</a>
+			<a href='#infobox'>Infobox</a>
+			<a href='#categories'>Categories</a>
+			<a href='#keywords'>Keywords</a>
+			<a href='#table-of-contents'>Content table</a>
+			<a href='#main'>Main content</a>
+			<a href='#external-links'>External links</a>
 		</footer>
 	</body>
 </html>
