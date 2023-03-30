@@ -20,7 +20,16 @@
 				position: sticky;
 				position: -webkit-sticky;
 				bottom: 0;
-				padding-bottom: env(safe-area-inset-bottom);
+				padding: 0.5em;
+				padding-bottom: calc(0.5em + env(safe-area-inset-bottom));
+				outline: 0.1em solid;
+				display: flex;
+				gap: 0.5em;
+				flex-wrap: wrap;
+			}
+			footer > * {
+				flex-grow: 1;
+				text-align: center;
 				outline: 0.1em solid;
 			}
 		</style>
@@ -88,7 +97,12 @@
 			<p>Aenean nec lorem. In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula.
 		</main>
 		<footer role='contentinfo'>
-			<h2>Footer</h2>
+			<a href='#'>Page top</a>
+			<a href='#heading-1'>Heading 1</a>
+			<a href='#heading-2'>Heading 2</a>
+			<a href='#heading-3'>Heading 3</a>
+			<a href='#heading-4'>Heading 4</a>
+			<a href='#heading-5'>Heading 5</a>
 		</footer>
 	</body>
 </html>
