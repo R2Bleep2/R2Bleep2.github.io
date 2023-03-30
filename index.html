@@ -10,15 +10,16 @@
 				--inset: 1em;
 			}
 			body {
-				margin: 0;
+				margin: var(--inset);
 				font-family: 'Calibri', sans-serif;
 				display: grid;
-				height: 100vh;
+				height: 90vh;
+				gap: var(--inset);
 			}
 			body > * {
 				border: 0.1em solid;
 				border-radius: 0.5em;
-				
+				padding: var(--inset);
 			}
 			main {
 				overflow-y: auto;
