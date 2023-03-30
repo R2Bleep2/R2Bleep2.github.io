@@ -5,7 +5,7 @@
 		<title>Safe Area Inset</title>
 		<!--meta name='description' content='Test of safe area environment variables in CSS.'/-->
 		<meta name='viewport' content='width=device-width'>
-		<meta name='viewport' content='viewport-fit=cover'> <!--Define the viewport to be the whole available screen space.-->
+		<meta name='viewport' content='viewport-fit=cover'> <!-- Define the viewport to be the whole available screen space. -->
 		<style>
 			h1 {
 				margin: 0;
@@ -15,9 +15,9 @@
 			}
 			body {
 				--fallback-margin: 1em;
-				margin: env(safe-area-inset-top, var(--fallback-margin)), env(safe-area-inset-right, var(--fallback-margin)), env(safe-area-inset-bottom, var(--fallback-margin)), env(safe-area-inset-left, var(--fallback-margin));
+				margin: env(safe-area-inset-top, var(--fallback-margin)) env(safe-area-inset-right, var(--fallback-margin)) env(safe-area-inset-bottom, var(--fallback-margin)) env(safe-area-inset-left, var(--fallback-margin));
 				padding: 1em;
-				border: 0.1em solid;
+				border: 0.5em solid hsl(0, 50%, 50%);
 			}
 		</style>
 	</head>
