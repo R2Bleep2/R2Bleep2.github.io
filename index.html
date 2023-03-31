@@ -8,41 +8,74 @@
 		<meta name='viewport' content='width=device-width'>
 		<style>
 /* Generic styling for the article of an encyclopedia or wiki. */
-/** General elements. */
 body {
-	margin: 0.5em;
+	margin: 0.5em; /* Ensure a consistent small margin all around. */
 	margin-bottom: 0; /* Disable the bottom margin so that the sticky footer doesn't move when the user is at the bottom of the page. */
-	font-family: 'Calibri', sans-serif;
+	font-family: 'Calibri', sans-serif; /* The default font should be sans-serif for clarity on low-PPI monitors. */
 }
 h1, h2, h3, h4, h5, h6 {
-	margin: 0;
+	line-height: 1em; /* Shrink the line height in headings to fit more text in. */
+	margin: 0; /* Remove the default margins to fit more text in. */
+	font-family: 'Garamond', serif; /* Headings are large so a serif font should be more clear on low-PPI monitors. */
 }
 p {
-	line-height: 1.5em; /* Space out lines to break up walls of text. */
-	text-indent: 1em; /* Indent paragraphs to distinguish them from lines. */
-	margin: 0.5em;
+	line-height: 1.2em;
+	text-indent: 1em; /* Indent paragraphs to break them up and distinguish them from lines. */
+	margin-block: 0.5em;
 }
-footer {
-	/* Make the footer sticky. */
-	position: sticky;
-	position: -webkit-sticky; /* This prefixed value is for compatibility with old iOS Safari. */
-	bottom: 0;
-	padding: 0.2em;
-	padding-bottom: calc(0.2em + env(safe-area-inset-bottom));
-	display: flex;
-	gap: 0.2em;
-	flex-wrap: wrap;
+/* Direct children of the body. */
+body > * {
+	padding: 0; /* By default, there may be some left padding in these elemnents that is causing their headings to offset from the headings of others. This could cause confusion (e.g. that the headings are lower-level) so the padding needs to go. */
+}
+/* Link menus. */
+#categories, #keywords, #external-links {
+	list-style: none; /* Remove the list dots in these elements. */
+	display: flex; /* Use flexbox to arrange their links in a row of buttons. */
+	flex-wrap: wrap; /* Wrap the contents so that when their headings are given their own line, the links move onto a second line. */
+}
+/** Their children. */
+#categories > *, #keywords > *, #external-links > * {
+	flex-grow: 1;
+}
+/** Their headings. */
+#categories > h2, #keywords > h2, #external-links > h2 {
+	width: 100%; /* Give headings their own line, forcing links onto a second line. */
 }
 
-/** Child elements. */
-footer > * {
-	background-color: white;
-	flex-grow: 1;
-	text-align: center;
-	outline: 0.1em solid;
-	border-radius: 0.2em;
+/* List items in the table of contents. */
+#table-of-contents > li {
+	margin-left: 1em; /* Some margin to keep the list ordinals visible. */
 }
-</style>
+
+/** Media queries. */
+@media print {
+	#external-links, footer {
+		display: none; /* Remove these elements as they only provide external and navigation links, which are not useful in print media. */
+	}
+}
+@media screen {
+	/* Footer. */
+	footer {
+		/* Make the footer sticky. */
+		position: sticky;
+		position: -webkit-sticky; /* This prefixed value is for compatibility with old iOS Safari. */
+		bottom: 0; /* There is no need for extra offset from the bottom when stickied. */
+		display: flex;
+		padding-bottom: 0.2em;
+		gap: 0.2em;
+		flex-wrap: wrap;
+	}
+	/** Child elements. */
+	footer > * {
+		background-color: white;
+		flex-grow: 1;
+		text-align: center;
+		outline: 0.1em solid;
+		border-radius: 0.2em;
+		padding: 0.1em;
+	}
+}
+		</style>
 	</head>
 	<body>
 		<!-- The banner element, containing a few prominent elements such as the website name. -->
@@ -59,16 +92,17 @@ footer > * {
 			<dt>Favorite food<dd>Spam and eggs
 		</dl>
 		
-		<menu id='categories' aria-label='Categories'>
-			<h2>Categories</h2>
+		<!-- A list of categories that the article belongs to. -->
+		<menu id='categories' aria-labelledby='categories-header'>
+			<h2 id='categories-header'>Categories</h2>
 			<li><a href>Fruit</a></li>
 			<li><a href>Vegetables</a></li>
 			<li><a href>Healthy Things</a></li>
 		</menu>
 		
 		<!-- The list of keywords of the article that each link to pages containing a list of articles featuring that keyword. Copied from the keywords meta element. -->
-		<menu id='keywords' aria-label='Keywords'>
-			<h2>Keywords</h2>
+		<menu id='keywords' aria-labelledby='keywords-header'>
+			<h2 id='keywords-header'>Keywords</h2>
 			<li><a href>Apple</a></li>
 			<li><a href>Orange</a></li>
 			<li><a href>Lemon</a></li>
@@ -154,13 +188,13 @@ footer > * {
 		
 		<!-- The footer element. Contains navigation links between elements on the page. -->
 		<footer id='footer' role='navigation'>
-			<a href='#'>Page top</a>
+			<a href='#'>Page Top</a>
 			<a href='#infobox'>Infobox</a>
 			<a href='#categories'>Categories</a>
 			<a href='#keywords'>Keywords</a>
-			<a href='#table-of-contents'>Content table</a>
-			<a href='#main'>Main content</a>
-			<a href='#external-links'>External links</a>
+			<a href='#table-of-contents'>Content Table</a>
+			<a href='#main'>Main Content</a>
+			<a href='#external-links'>External Links</a>
 		</footer>
 	</body>
 </html>
