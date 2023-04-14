@@ -84,7 +84,7 @@ p {
 	#internal-links {
 		order: 7;
 		position: sticky; /* Have the internal links stick to the screen. */
-		position: webkit-sticky;
+		position: -webkit-sticky;
 		bottom: calc(env(safe-area-inset-bottom) + 0.5em);
 		display: flex; /* Use flexbox internally in this element too. This declaration seems to confuse screen readers; investigate. */
 		flex-wrap: wrap; /* When there are too many elements to display on one line, add more lines. */
