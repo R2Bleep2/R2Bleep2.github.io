@@ -13,8 +13,9 @@ Generic styling for the article of an encyclopedia or wiki.
 
 The cascade should assume initially that the user is on the most restrictive device that CSS supports and introduce page features as media queries detect that the device supports them. For example, this means that the cascade should support very small screens at first, such as smartwatch screens.
 */
+
 body {
-	margin: 0.5em; /* Ensure a consistent small margin all around. */
+	margin: 0.5em; /* A small margin all around. */
 	font-family: "Calibri", sans-serif; /* The default font should be sans-serif for clarity on low-PPI monitors. */
 }
 
@@ -23,7 +24,10 @@ body > * {
 	
 }
 
+/* Headings. */
+/** All. */
 h1, h2, h3, h4, h5, h6 {
+	font-size: 1em; /* Save a lot of space by not using size to differentiate headings. */
 	line-height: 1em; /* Shrink the line height in headings to fit more text in. */
 	margin: 0; /* Remove the default margins to fit more text in. */
 }
@@ -84,7 +88,7 @@ p {
 	#internal-links {
 		order: 7;
 		position: sticky; /* Have the internal links stick to the screen. */
-		position: -webkit-sticky;
+		position: -webkit-sticky; /* This prefixed value is for compatibility with old iOS Safari. */
 		bottom: calc(env(safe-area-inset-bottom) + 0.5em);
 		display: flex; /* Use flexbox internally in this element too. This declaration seems to confuse screen readers; investigate. */
 		flex-wrap: wrap; /* When there are too many elements to display on one line, add more lines. */
@@ -107,7 +111,12 @@ p {
 		border: 0.1em solid;
 		flex-grow: 1;
 		text-align: center;
-		
+		margin-inline: 0.1em;
+	}
+	
+	/** The main content link. */
+	a[href="#"] {
+		display: none; /* If flexbox is supported and the page's elements have been rearranged with the main element at the top, this link serves the same purpose as the main content link and is redundant. */
 	}
 }
 
@@ -152,9 +161,9 @@ p {
 		<nav id="internal-links" role="navigation" aria-labelledby="internal-links-header">
 			<h2 id="internal-links-header">Internal Links</h2>
 			<a href="#main">Main content</a> <!-- Skipnav to the main element. This is declared as soon as possible for quick access. -->
-			<a href="#">Page top</a>
+			<a href="#">Top</a> <!-- Top of the page. -->
 			<a href="#infobox">Infobox</a>
-			<a href="#table-of-contents">Content table</a>
+			<a href="#table-of-contents">Contents</a> <!-- Table of contents. -->
 			<a href="#categories">Categories</a>
 			<a href="#keywords">Keywords</a>
 			<a href="#external-links">External links</a>
