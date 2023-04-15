@@ -12,6 +12,8 @@
 			
 			body {
 				margin: 0;
+				margin-top: calc(env(safe-area-inset-bottom) + var(--inset))
+				margin-bottom: calc(env(safe-area-inset-bottom) + var(--inset));
 				font-family: 'Calibri', sans-serif;
 				display: flex;
 				flex-direction: column;
@@ -22,7 +24,8 @@
 				flex-grow: 1;
 			}
 			
-			footer {
+			nav {
+				order: 2;
 				text-align: center;
 				display: flex;
 				gap: var(--inset);
@@ -30,7 +33,7 @@
 				flex-wrap: wrap;
 			}
 			
-			footer > * {
+			nav > * {
 				flex-grow: 1;
 				text-align: center;
 				padding: 0.1em;
@@ -38,6 +41,7 @@
 			}
 			
 			main {
+				order: 1;
 				padding: var(--inset);
 				overflow-y: scroll;
 				-webkit-overflow-scrolling: touch; /* This is a non-standard feature that is used on old versions of iOS Safari (versions 5 - 12.2). It states whether or not to use the momentum-based scrolling found on that browser. When a user scrolls with their finger and takes their finger off the screen, the scrolling continues briefly i.e. it has an illusion of momentum. */
@@ -54,6 +58,14 @@
 		</style>
 	</head>
 	<body>
+		<nav>
+			<a href='#top-level-heading'>Top-level heading</a>
+			<a href='#section-1'>Section 1</a>
+			<a href='#section-2'>Section 2</a>
+			<a href='#section-3'>Section 3</a>
+			<a href='#section-4'>Section 4</a>
+			<a href='#section-5'>Section 5</a>
+		</nav>
 		<main id='main' role='main'>
 			<h1 id='top-level-heading'>Cool Bug Facts</h1>
 			<h2 id='section-1'>Section 1</h2>
@@ -99,13 +111,5 @@
 			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
 			<p>In porttitor. Donec laoreet nonummy augue. Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy. Fusce aliquet pede non pede. Suspendisse dapibus lorem pellentesque magna. Integer nulla. Donec blandit feugiat ligula. Donec hendrerit, felis et imperdiet euismod, purus ipsum pretium metus, in lacinia nulla nisl eget sapien.
 		</main>
-		<footer>
-			<a href='#top-level-heading'>Top-level heading</a>
-			<a href='#section-1'>Section 1</a>
-			<a href='#section-2'>Section 2</a>
-			<a href='#section-3'>Section 3</a>
-			<a href='#section-4'>Section 4</a>
-			<a href='#section-5'>Section 5</a>
-		</footer>
 	</body>
 </html>
