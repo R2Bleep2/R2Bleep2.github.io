@@ -12,9 +12,16 @@
 		<style>
 			body {
 				--margin: 1em;
-				margin: var(--margin);
+				--margin-left: calc(env(safe-area-inset-left) + var(--margin));
+				--margin-right: calc(env(safe-area-inset-right) + var(--margin));
+				--margin-top: calc(env(safe-area-inset-top) + var(--margin));
+				--margin-bottom: calc(env(safe-area-inset-bottom) + var(--margin));
+				margin-left: var(--margin-left);
+				margin-right: var(--margin-right);
+				margin-top: var(--margin-top);
+				margin-bottom: var(--margin-bottom);
 				outline: 0.1em solid;
-				height: calc(100vh - (var(--margin) * 2));
+				height: calc(100vh - (var(--margin-bottom) + var(--margin-top)));
 			}
 		</style>
 	</head>
