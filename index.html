@@ -6,8 +6,7 @@
 		- Removed the navigation links from the heading groups as they were appearing in screen readers despite not providing meaning to the main text content. These are instead replaced with a sticky footer containing the navigation links. -->
 		<title>Article Name is an article that has a name</title> <!-- The title element. Up to 55 characters are read by search engines and displayed as the heading text of entries. -->
 		<meta name="viewport" content="width=device-width">
-		<style>
-@charset "UTF-8";
+		<style>@charset "UTF-8";
 /*
 Generic styling for the article of an encyclopedia or wiki.
 
@@ -32,15 +31,30 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0; /* Remove the default margins to fit more text in. */
 }
 
+/** By level. Use an increasing amount of formatting for each level. */
+
+h1, h2, h3 {
+	text-decoration: underline;
+}
+
+h1, h2 {
+	font-style: italic;
+}
+
+h1 {
+	text-transform: uppercase;
+	text-align: center;
+}
+
 p {
 	line-height: 1.5em; /* Space lines out to make them easier to read and break up the dreaded wall of text. */
 	text-indent: 1em; /* Indent paragraphs to break them up and distinguish them from lines. */
 	margin-block: 0.5em;
 }
 
-/* High-level menus. */
-#categories, #keywords, #external-links, #internal-links {
-	list-style: none; /* Remove the list markers. */
+/* Table of contents. */
+#table-of-contents {
+	padding: 0; /* Remove the default padding that offsets both content and heading. */
 }
 
 /* List items in the table of contents. */
@@ -48,52 +62,34 @@ p {
 	margin-left: 1em; /* Some margin to keep the list ordinals visible. */
 }
 
-body {
-	display: flex; /* Use flexbox. */
-	flex-direction: column; /* Sort the child elements into a column. */
-}
-
-/* Navigation blocks. */
-nav {
-	display: flex; /* Use flexbox internally in this element too. */
-	flex-wrap: wrap; /* When there are too many elements to display on one line, add more lines. */
-	margin: 0;
-	padding: 0;
-}
-
-/** Heading. */
-nav > h2 {
-	/* There is no need for this element visually, but it should only be removed visually and not from the accessibility tree. To do this, set the height and width to 0 and disable overflow. As the text is now entirely outside its containing element, but does not overflow, it becomes invisible. */
-	height: 0;
-	width: 0;
-	overflow: hidden;
-	margin: 0;
-}
-
-/** Child links. */
-nav > a {
-	background: hsl(0, 0%, 100%); /* Knock out any content underneath the items. */
-	border: 0.1em solid;
-	flex-grow: 1;
-	text-align: center;
-	margin-inline: 0.1em;
-}
-
-/** The page top link. */
-a[href="#"] {
-	display: none; /* Assuming firstly that the webpage is being displayed with barely any features, remove this link as the user will already be at the top of the page if seeing it. */
-}
-
 /* Media queries. */
 /** Type. */
 @media print {
-	#internal-links, #external-links {
+	nav {
 		display: none; /* Remove these elements as they only provide hyperlinks, which are not useful in print media. */
 	}
 }
 
 @media screen {
-	
+	/* Navigation blocks. */
+	nav {
+		display: flex; /* Use flexbox internally in this element too. */
+		flex-wrap: wrap; /* When there are too many elements to display on one line, add more lines. */
+		margin-block: 0.2em;
+	}
+
+	/** Child links. */
+	nav > a {
+		border: 0.1em solid;
+		flex-grow: 1;
+		text-align: center;
+		margin-inline: 0.1em;
+	}
+
+	/** The page top link. */
+	a[href="#"] {
+		display: none; /* Assuming firstly that there is no option for sticky or non-scrolling elements, remove this link as the user will already be at the top of the page if seeing it. */
+	}
 }
 
 /** Size. These are specified in ems, not pixels, so that Firefox users with "Zoom text only" enabled still activate the queries when zooming. */
@@ -117,8 +113,7 @@ a[href="#"] {
 /**** High width (desktop). */
 @media (min-width: 100em) {
 	
-}
-		</style>
+}</style>
 	</head>
 	<body>
 		<!-- The banner element, containing a few prominent elements such as the website name. -->
@@ -127,16 +122,14 @@ a[href="#"] {
 		</header>
 		
 		<!--- External links. -->
-		<nav id="external-links" role="navigation" aria-labelledby="external-links-header">
-			<h2 id="external-links-header">External Links</h2>
+		<nav id="external-links" role="navigation" aria-label="External links">
 			<a href="link here">Homepage</a>
 			<a href="link here">Related articles</a>
 			<a href="link here">What links here</a>
 		</nav>
 		
 		<!--- Internal links to page landmarks. -->
-		<nav id="internal-links" role="navigation" aria-labelledby="internal-links-header">
-			<h2 id="internal-links-header">Internal Links</h2>
+		<nav id="internal-links" role="navigation" aria-label="Internal links">
 			<a href="#main">Main content</a> <!-- Skipnav to the main element. This is declared as soon as possible for quick access. -->
 			<a href="#">Top</a> <!-- Top of the page. -->
 			<a href="#infobox">Infobox</a>
