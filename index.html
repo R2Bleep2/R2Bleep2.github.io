@@ -1,32 +1,95 @@
-<!DOCTYPE html>
-<html lang="en-US">
-	<head>
-		<meta charset="utf-8">
-		<title>Does the browser support dynamic viewport units?</title>
-		<!--meta name="author" content="Author"/-->
-		<!--meta name="description" content="Basic webpage template containing important elements that are common in webpages."/-->
-		<!--meta name="keywords" content="apple,orange,pear,pomegranate"/-->
-		<!--meta name="format-detection" content="telephone=no"/-->
-		<meta name="viewport" content="width=device-width">
-		<!--link href="favicon.svg" rel="icon" type="image/svg"/-->
-		<style>
-			#true {
-				display: none;
-			}
-			
-			@supports (width: 1dvw) {
-				#false {
-					display: none;
-				}
-				
-				#true {
-					display: initial;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<span id="true">This browser supports dynamic viewport CSS units.</span>
-		<span id="false">This browser does not support dynamic viewport CSS units.</span>
-	</body>
-</html>
+@charset "UTF-8";
+/*
+Generic styling for the article of an encyclopedia or wiki.
+
+The cascade should assume initially that the user is on the most restrictive device that CSS supports and introduce page features as media queries detect that the device supports them. For example, this means that the cascade should support very small screens at first, such as smartwatch screens.
+*/
+
+body {
+	margin: 0.5em; /* A small margin all around. */
+	font-family: sans-serif; /* The default font should be sans-serif for clarity on low-PPI monitors. */
+}
+
+/* Direct children of the body. */
+body > * {
+	
+}
+
+/* Headings. */
+/** All. */
+h1, h2, h3, h4, h5, h6 {
+	font-size: 1em; /* Save a lot of space by not using size to differentiate headings. */
+	line-height: 1em; /* Shrink the line height in headings to fit more text in. */
+	margin: 0; /* Remove the default margins to fit more text in. */
+}
+
+/** By level. Use increasingly heavy formatting for each level. */
+h1, h2, h3 {
+	text-decoration: underline;
+}
+
+h1, h2 {
+	font-style: italic;
+}
+
+h1 {
+	text-transform: uppercase;
+	text-align: center;
+}
+
+p {
+	line-height: 1.5em; /* Space lines out to make them easier to read and break up the dreaded wall of text. */
+	text-indent: 1em; /* Indent paragraphs to break them up and distinguish them from lines. */
+	margin-block: 0.5em;
+}
+
+/* Table of contents. */
+#table-of-contents {
+	padding: 0; /* Remove the default padding that offsets both content and heading. */
+}
+
+/* List items in the table of contents. */
+#table-of-contents > li {
+	margin-left: 1.5em; /* Some margin to keep the list ordinals visible. */
+}
+
+/* Media queries. */
+/** Type. */
+@media print {
+	nav {
+		display: none; /* Remove these elements as they only provide hyperlinks, which are not useful in print media. */
+	}
+}
+
+@media screen {
+	/* Navigation elements. */
+	
+	
+	/** The page top link. */
+	a[href="#"] {
+		display: none; /* Assuming firstly that there is no option for sticky or non-scrolling elements, remove this link as the user will already be at the top of the page if seeing it. */
+	}
+}
+
+/** Size. These are specified in ems, not pixels, so that Firefox users with "Zoom text only" enabled still activate the queries when zooming. */
+/*** Height. */
+
+/*** Width. */
+/**** Low width (vertical tablets and horizontal smartphones). */
+@media (min-width: 30em) {
+	body {
+		/*grid-template-columns: 1fr 5fr;*/ /* A small column for the navigation element and a large column for the main element. */
+	}
+}
+
+/**** Medium width (laptop and horizontal tablets). */
+@media (min-width: 50em) {
+	body {
+		/* The header and footer should be rows with the same width as the body. The elements vertically in between (the navigation, main and aside elements) should be columns. */
+		/*grid-template-columns: 1fr 4fr 1fr;*/ /* Small columns for the navigation and aside elements and a large column for the main element. */
+	}
+}
+/**** High width (desktop). */
+@media (min-width: 100em) {
+	
+}
